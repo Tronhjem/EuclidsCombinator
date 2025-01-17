@@ -1,5 +1,4 @@
-
-class Sequence:
+class EuclidSeq:
     def __init__(self, hits, length):
         self.hits = hits
         self.length = length
@@ -49,8 +48,8 @@ class Sequence:
 
 
 def PrintSequence():
-    s1 = Sequence(6, 15)
-    s2 = Sequence(8, 17)
+    s1 = EuclidSeq(6, 15)
+    s2 = EuclidSeq(8, 17)
 
     print(s1.sequence)
     print(s2.sequence)
