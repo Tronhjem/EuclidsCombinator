@@ -6,6 +6,9 @@
 #
 # MIDI Drum sequencer prototype, by Michiel Overtoom, motoom@xs4all.nl
 #
+
+# just here as an example for now.. not using it.
+
 """Play drum pattern from file to MIDI out."""
 
 from __future__ import print_function
