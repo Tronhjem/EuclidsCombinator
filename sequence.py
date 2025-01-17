@@ -1,3 +1,4 @@
+
 class Sequence:
     def __init__(self, hits, length):
         self.hits = hits
@@ -46,3 +47,11 @@ class Sequence:
     def __xor__(self, other):
         return self.combineSequence(self.sequence, other.sequence, self.comebineXor)
 
+
+def PrintSequence():
+    s1 = Sequence(6, 15)
+    s2 = Sequence(8, 17)
+
+    print(s1.sequence)
+    print(s2.sequence)
+    print("-----------------------------------")
