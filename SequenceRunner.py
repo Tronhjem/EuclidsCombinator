@@ -13,7 +13,7 @@ class SequenceRunner(Thread):
         # p = psutil.Process(os.getpid())
         # p.nice(psutil.REALTIME_PRIORITY_CLASS)
 
-        self.running = True
+        self._running = True
         self.bpm = bpm
         self.beatDivision = 4.
         self.interval = 60. / (float(bpm) * self.beatDivision)
@@ -39,7 +39,7 @@ class SequenceRunner(Thread):
     def run(self):
         self.timeOfLastStep = timenow()
 
-        while self.running:
+        while self._running:
             nextStep = self.timeOfLastStep + self.interval
             if timenow() >= nextStep:
                 for part in self.parts:
@@ -50,4 +50,4 @@ class SequenceRunner(Thread):
 
 
     def shutdown(self):
-        self.running = False
+        self._running = False

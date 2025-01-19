@@ -1,12 +1,9 @@
-from EuclidSeq import EuclidSeq 
+from time import sleep
 from SequenceRunner import SequenceRunner
 
-from threading import Thread
-from time import sleep, time as timenow
-
-
 if __name__ == '__main__':
-    seq = SequenceRunner(100)
+    seq = SequenceRunner(100) # starts running here. 
+    
     try:
         while True:
             sleep(1)
@@ -15,9 +12,8 @@ if __name__ == '__main__':
         print('')
 
     finally:
-        seq.shutdown() # And kill it.
+        seq.shutdown() # kills it here
         seq.join()
         del seq
 
         print("Done")
-
