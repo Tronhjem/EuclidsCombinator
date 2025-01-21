@@ -1,7 +1,8 @@
 __WIP__
 
 This is a sequencer that uses sequences generated as euclidean sequences or manually typed, and combines these into poly rythmical sequences. 
-
+For now this is a prototype in Python, sketching out the concept until it perhaps finds a more suitable way to exist.
+Below is a bit of description of the structure so far and the ideas.
 
 ### Part
 A part is either a euclidean sequnece or manual entered sequence of any length. 
