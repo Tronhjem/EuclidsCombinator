@@ -19,6 +19,13 @@ def GetOperation(operationString):
         return XOR
 
 
+class CombinationPair:
+    def __init__(self, partOne, partTwo, logic):
+        self.partOne = partOne
+        self.partTwo = partTwo
+        self.logic = logic
+        
+
 class Instruction:
     def __init__(self, a, b, logic, parts):
         self.parts = parts
@@ -51,9 +58,5 @@ class Instruction:
         return logic(self.parts[trigger], self.parts[part].shouldTrigger(step))
 
 
-class CombinationPair:
-    def __init__(self, partOne, partTwo, logic):
-        self.partOne = partOne
-        self.partTwo = partTwo
-        self.logic = logic
+
 
