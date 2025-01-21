@@ -12,6 +12,13 @@ class Track:
 
 
     def buildInstructions(self):
+        # build instructions should happen in another place where 
+        # when parts added we add them to a dict.
+        # when combinations happen we add them as well to the dict so they can be resused. 
+
+        # an instruction set could be a class with bound referneces to the parts in the dict 
+        # and then querried from here.
+
         tempName = f''
         operations = []
         index = 0
@@ -36,6 +43,10 @@ class Track:
             print(f'Not enough instructions or uneven number in {self.instructions}')
 
         else:
+            # here we can just take the first part and get the result. 
+            # from there we parse then in pairs, like operator and part, etc.
+            # if we only have one part we only need the result and else we always have an operator and pair part.
+
             operation = GetOperation(operations[1])
             self.AddInstruction(Instruction(operations[0], operations[2], operation, self.parts))
             instructionIndex = 1

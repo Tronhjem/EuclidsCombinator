@@ -26,6 +26,9 @@ class CombinationPair:
         self.logic = logic
         
 
+class InstructionSet:
+    pass
+
 class Instruction:
     def __init__(self, a, b, logic, parts):
         self.parts = parts
