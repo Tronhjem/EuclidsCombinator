@@ -1,6 +1,5 @@
 from time import sleep
-
-from Instruction import InstructionMap
+from InstructionMap import InstructionMap
 from Part import Part
 from Track import Track
 from SequenceRunner import SequenceRunner
