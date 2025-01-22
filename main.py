@@ -8,13 +8,13 @@ parts = {}
 
 if __name__ == '__main__':
     parts['A'] = Part()
-    parts['A'].setSequence([1,0,1,0,1,0,1])
+    parts['A'].set_sequence([1, 0, 1, 0, 1, 0, 1])
 
     parts['B'] = Part()
-    parts['B'].setSequence([1,0,1,0,1,0,0,0, 1, 1])
+    parts['B'].set_sequence([1, 0, 1, 0, 1, 0, 0, 0, 1, 1])
 
     parts['C'] = Part()
-    parts['C'].setSequence([1,0,0,1])
+    parts['C'].set_sequence([1, 0, 0, 1])
 
     track = Track(36, 'A&B|C', parts)
     seq = SequenceRunner(100) # starts running here. 

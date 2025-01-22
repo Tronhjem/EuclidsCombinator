@@ -38,13 +38,13 @@ class EuclidSeq:
         return output
 
     def __and__(self, other):
-        return self.combineSequence(self.sequence, other.sequence, self.combineAnd)
+        return self.combineSequence(self.sequence, other._sequence, self.combineAnd)
 
     def __or__(self, other):
-        return self.combineSequence(self.sequence, other.sequence, self.combineOr)
+        return self.combineSequence(self.sequence, other._sequence, self.combineOr)
 
     def __xor__(self, other):
-        return self.combineSequence(self.sequence, other.sequence, self.comebineXor)
+        return self.combineSequence(self.sequence, other._sequence, self.comebineXor)
 
 
 def PrintSequence():
