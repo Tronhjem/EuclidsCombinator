@@ -4,7 +4,6 @@ from threading import Thread
 
 from time import time as timenow
 from MidiOutHandler import MidiOutHandler
-from Part import Part
 
 class SequenceRunner(Thread):
     def __init__(self, bpm):
@@ -41,7 +40,7 @@ class SequenceRunner(Thread):
             nextStep = self.timeOfLastStep + self.interval
             if timenow() >= nextStep:
                 for track in self.tracks:
-                    if track.evaluate_step():
+                    if track.evaluate_next_step():
                         self.midiHandler.noteout(track._note, 100)
 
                 self.timeOfLastStep = timenow()

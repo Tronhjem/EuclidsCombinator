@@ -22,23 +22,8 @@ def GetOperation(operationString):
         return XOR
 
 
-class InstructionSet:
-    def __init__(self):
-        self._instructions = []
-
-    def add_instruction(self, instruction):
-        self._instructions.append(instruction)
-
-    def evaluate_step(self, step):
-        for_evaluation = self._instructions[0].evaluate_step(step)
-        for x in range(1, len(self._instructions)):
-            for_evaluation = self._instructions[x].evaluate_step(step, for_evaluation)
-
-        return for_evaluation
-
-
 class Instruction:
-    def __init__(self, part, operator, parts):
+    def __init__(self, part: str, operator: str, parts: dict):
         self.parts = parts
         self.dictEntry = part + operator
 
@@ -54,16 +39,40 @@ class Instruction:
             return self.part.evaluate_step(step)
 
 
+class InstructionSet:
+    """
+    This is a list of instructions to be evaluated in the order they're added
+    """
+    def __init__(self):
+        self._instructions = []
+
+    def add_instruction(self, instruction):
+        self._instructions.append(instruction)
+
+    def evaluate_step(self, step):
+        for_evaluation = self._instructions[0].evaluate_step(step)
+        for x in range(1, len(self._instructions)):
+            for_evaluation = self._instructions[x].evaluate_step(step, for_evaluation)
+
+        return for_evaluation
+
+
 class InstructionMap:
     def __init__(self, parts):
         self._instruction_map = {}
         self._parts = parts
 
-    def get_instruction_set(self, instruction_set):
+    def get_instruction_set(self, instruction_set: str):
         instruction_set = instruction_set.replace(" ", "")
+
         if instruction_set in self._instruction_map:
             return self._instruction_map[instruction_set]
         else:
+
+            self.build_instruction(instruction_set)
+            if instruction_set in self._instruction_map:
+                return self._instruction_map[instruction_set]
+
             print(f'No Instruction set found for {instruction_set}')
 
     def build_instruction(self, instruction_string):
@@ -105,20 +114,3 @@ class InstructionMap:
 
             self._instruction_map[instruction_string] = instruction_set
 
-
-if __name__ == "__main__":
-    print("@@@@")
-    parts_map = {}
-    instructions_map = InstructionMap(parts_map)
-
-    parts_map['Foo'] = Part()
-    parts_map['Foo'].set_sequence([1, 0, 1, 0, 1, 0, 1])
-
-    parts_map['Bar'] = Part()
-    parts_map['Bar'].set_sequence([1, 1, 1, 0, 1, 0, 0, 0, 1, 1])
-
-    parts_map['CSomething'] = Part()
-    parts_map['CSomething'].set_sequence([1, 0, 0, 1])
-
-    instructions_map.build_instruction('Foo | Bar')
-    print(instructions_map.get_instruction_set('Foo|Bar').evaluate_step(1))

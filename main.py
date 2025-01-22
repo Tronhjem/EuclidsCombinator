@@ -1,9 +1,12 @@
 from time import sleep
+
+from Instruction import InstructionMap
 from Part import Part
 from Track import Track
 from SequenceRunner import SequenceRunner
 
 parts = {}
+instructions = InstructionMap(parts)
 
 
 if __name__ == '__main__':
@@ -16,8 +19,9 @@ if __name__ == '__main__':
     parts['C'] = Part()
     parts['C'].set_sequence([1, 0, 0, 1])
 
-    track = Track(36, 'A&B|C', parts)
-    seq = SequenceRunner(100) # starts running here. 
+    track = Track(36, 'A&B|C', instructions)
+
+    seq = SequenceRunner(100) # starts running here.
     seq.addTrack(track)
 
     try:
