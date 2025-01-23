@@ -10,8 +10,6 @@ from EuclidSeq import EuclidSeq
 from Track import Track
 from SequenceRunner import SequenceRunner
 
-parts = {}
-instructions = InstructionMap(parts)
 
 
 
@@ -40,20 +38,20 @@ def render(stdscr, data):
 
 
 if __name__ == '__main__':
+    parts = {}
+    instructions = InstructionMap(parts)
 
-    parts['A'] = ManualSequence([1, 0, 1, 0, 1, 0, 1, 0])
-    parts['Q'] = ManualSequence([1, 0, 1, 0, 1, 0, 1, 1, 1])
+    # parts['A'] = ManualSequence([1, 0, 1, 0, 1, 0, 1, 0])
+    # parts['Q'] = ManualSequence([1, 0, 1, 0, 1, 0, 1, 1, 1])
 
-    parts['B'] = EuclidSeq(4,7)
+    # parts['B'] = EuclidSeq(4,7)
 
-    parts['C'] = EuclidSeq(1,5)
+    # parts['C'] = EuclidSeq(1,5)
 
-    track = Track(36, 'A&B|C', instructions)
-    track2 = Track(42, 'B|C&Q', instructions)
+    # track = Track(36, 'A&B|C', instructions)
+    # track2 = Track(42, 'B|C&Q', instructions)
 
-    seq = SequenceRunner(100) # starts running here.
-    seq.addTrack(track)
-    seq.addTrack(track2)
+    seq = SequenceRunner(100, instructions) # starts running here.
 
     try:
         curses.wrapper(render, seq)
