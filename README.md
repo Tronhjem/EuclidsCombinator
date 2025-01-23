@@ -1,12 +1,13 @@
-still work in progress.
 
 This is a sequencer that uses sequences generated as euclidean sequences or manually typed, and combines these into poly rythmical sequences. 
 For now this is a prototype in Python, sketching out the concept until it perhaps finds a more suitable way to exist.
 Below is a bit of description of the structure so far and the ideas.
 
+Still work in progress. It's prototyping the idea before migrating it something more useful with GUI and all.
 
 ## Usage
-wip
+run main.py 
+edit the file TestInstructions.txt for now to create sequences and tracks.
 
 ### Operators on sequences and tracks
 For now part can be either a sequence or euclidean sequence. That can created by doing for example A = [1,0,0,0] for a sequence or B = (5,6) for a euclidean sequence. 
