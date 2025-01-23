@@ -26,6 +26,7 @@ class SequenceRunner(Thread):
 
         self._instruction_map = instruction_map
         self._parts = parts
+        self._is_paused = False
 
         self.start()
 
@@ -33,11 +34,17 @@ class SequenceRunner(Thread):
     def addTrack(self, part):
         self._tracks.append(part)
 
+    def toggle_pause(self):
+        self._is_paused = not self._is_paused
+        print()
 
     def run(self):
         self._timeOfLastStep = timenow()
 
         while self._running:
+            if self._is_paused:
+                continue
+
             nextStep = self._timeOfLastStep + self._interval
             if timenow() >= nextStep:
                 self._step += 1

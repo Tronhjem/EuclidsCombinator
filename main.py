@@ -51,6 +51,8 @@ def render(stdscr, data):
         key = stdscr.getch()
         if key == ord('q'):
             break
+        if key == ord('p'):
+            data.toggle_pause()
 
 
 class MyHandler(FileSystemEventHandler):

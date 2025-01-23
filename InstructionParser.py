@@ -1,5 +1,6 @@
 from InstructionMap import InstructionMap
 from EuclidSeq import EuclidSeq
+from ManualSequence import ManualSequence
 from Track import Track
 
 class InstructionParser:
@@ -18,7 +19,6 @@ class InstructionParser:
             line = line.replace(' ', '')
             line = line.replace('\n', '')
             line = line.lower()
-            print(line)
 
             var_name = f''
             index = 0 
@@ -50,7 +50,12 @@ class InstructionParser:
                 self._parts[var_name] = EuclidSeq(hit, length)
                 
             elif operation[0] == '[':
-                pass
+                end_index = operation.index(']')
+                operation_set = operation[1:end_index].split(',')
+                if len(operation_set) > 0:
+                    operation_set = [int(x) for x in operation_set]
+                    self._parts[var_name] = ManualSequence(operation_set)
+
             elif operation[0] == '{':
                 operation_set = operation[1:]
                 operation_set = operation_set.replace('}','')
