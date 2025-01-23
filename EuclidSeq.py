@@ -1,56 +1,49 @@
-class EuclidSeq:
+from Part import Part
+
+class EuclidSeq(Part):
     def __init__(self, hits, length):
+        super().__init__()
         self.hits = hits
-        self.length = length
-        self.sequence = []
-        self.generateSequence() 
+        self._length = length
+        self._sequence = [0] * length
+        self.generate_sequence() 
 
-    def generateSequence(self):
-        self.sequence = []
-        count = self.length
+    def generate_sequence(self):
+        count = self._length
 
-        for x in range(self.length):
-            if count >= self.length:
-                self.sequence.append(1)
-                count = count - self.length
+        for x in range(self._length):
+            if count >= self._length:
+                self._sequence[x] = 1
+                count = count - self._length
 
             else:
-                self.sequence.append(0)
+                self._sequence[x] = 0
 
             count = count + self.hits
 
-    def combineAnd(self, a, b):
-        return a & b
+    # def combineAnd(self, a, b):
+    #     return a & b
 
-    def combineOr(self, a, b):
-        return a | b
+    # def combineOr(self, a, b):
+    #     return a | b
 
-    def comebineXor(self, a, b):
-        return a ^ b
+    # def comebineXor(self, a, b):
+    #     return a ^ b
     
-    def combineSequence(self, s1, s2, operation):
-        output = []
-        length = max(len(s1), len(s2))
-        for i in range(length):
-            result = operation(s1[i % len(s1)], s2[i % len(s2)])
-            output.append(result)
+    # def combineSequence(self, s1, s2, operation):
+    #     output = []
+    #     length = max(len(s1), len(s2))
+    #     for i in range(length):
+    #         result = operation(s1[i % len(s1)], s2[i % len(s2)])
+    #         output.append(result)
         
-        return output
+    #     return output
 
-    def __and__(self, other):
-        return self.combineSequence(self.sequence, other._sequence, self.combineAnd)
+    # def __and__(self, other):
+    #     return self.combineSequence(self.sequence, other._sequence, self.combineAnd)
 
-    def __or__(self, other):
-        return self.combineSequence(self.sequence, other._sequence, self.combineOr)
+    # def __or__(self, other):
+    #     return self.combineSequence(self.sequence, other._sequence, self.combineOr)
 
-    def __xor__(self, other):
-        return self.combineSequence(self.sequence, other._sequence, self.comebineXor)
-
-
-def PrintSequence():
-    s1 = EuclidSeq(6, 15)
-    s2 = EuclidSeq(8, 17)
-
-    print(s1.sequence)
-    print(s2.sequence)
-    print("-----------------------------------")
+    # def __xor__(self, other):
+    #     return self.combineSequence(self.sequence, other._sequence, self.comebineXor)

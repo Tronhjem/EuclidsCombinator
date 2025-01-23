@@ -25,7 +25,6 @@ class SequenceRunner(Thread):
 
         self.tracks = []
 
-        print('Running Sequence... press ctl-c to stop')
         self.start()
 
 
@@ -39,6 +38,7 @@ class SequenceRunner(Thread):
         while self._running:
             nextStep = self.timeOfLastStep + self.interval
             if timenow() >= nextStep:
+                self.step += 1
                 for track in self.tracks:
                     if track.evaluate_next_step():
                         self.midiHandler.noteout(track._note, 100)

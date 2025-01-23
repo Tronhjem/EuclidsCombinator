@@ -1,4 +1,4 @@
-from Instruction import InstructionMap
+from InstructionMap import InstructionMap
 
 
 class Track:

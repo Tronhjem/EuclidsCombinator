@@ -1,8 +1,24 @@
-__WIP__
+still work in progress.
 
 This is a sequencer that uses sequences generated as euclidean sequences or manually typed, and combines these into poly rythmical sequences. 
 For now this is a prototype in Python, sketching out the concept until it perhaps finds a more suitable way to exist.
 Below is a bit of description of the structure so far and the ideas.
+
+
+## Usage
+wip
+
+### Operators on sequences and tracks
+For now part can be either a sequence or euclidean sequence. That can created by doing for example A = [1,0,0,0] for a sequence or B = (5,6) for a euclidean sequence. 
+Tracks are created with {} brackets. 
+To combine the parts assign them to a track with a note value and operatros. 
+for example t1 = {36, A|B}
+This will create a track that triggers note 36 and is a combination of A or B. 
+Operators to use for now are & and, | or, ^ xor. 
+
+
+## Code concepts:
+Below is an overview of the conceps in the code.
 
 ### Part
 A part is either a euclidean sequnece or manual entered sequence of any length. 
