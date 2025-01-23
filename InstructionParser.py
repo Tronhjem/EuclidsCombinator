@@ -1,9 +1,16 @@
 from InstructionMap import InstructionMap
+from EuclidSeq import EuclidSeq
+from Track import Track
 
 class InstructionParser:
-    def __init__(self, instruction_map: InstructionMap, parts: dict):
+    def __init__(self, instruction_map: InstructionMap, parts: dict, instructions):
         self._instruction_map = instruction_map
         self._parts = parts
+        self._instructions = instructions
+
+    def update(self):
+        self._parts['tracks'] = []
+        self.parse_instructions(self._instructions)
 
     def parse_instructions(self, instruction_text: str):
         line_count = 0
@@ -38,24 +45,23 @@ class InstructionParser:
                 continue
 
             if operation[0] == '(':
-                pass
+                hit = int(operation[1])
+                length = int(operation[3])
+                self._parts[var_name] = EuclidSeq(hit, length)
                 
             elif operation[0] == '[':
                 pass
             elif operation[0] == '{':
-                pass
+                operation_set = operation[1:]
+                operation_set = operation_set.replace('}','')
+                commands = operation_set.split(',')
+                if len(commands) > 1 and len(commands) < 3:
+                    self._parts[var_name] = Track(int(commands[0]), commands[1], self._instruction_map)
+                    self._parts['tracks'].append(self._parts[var_name])
+                else:
+                    print(f'Error in commands for tracks on line {line_count}: {line}')
+                    print('Track expects 2 commands. e.g. t1 = {32, A|B}')
 
             line_count += 1
 
-
-#Testing code
-parts = {}
-
-ins_map = InstructionMap(parts)
-
-with open('TestInstructions.txt', 'r') as file:
-    instructions = file.readlines()
-
-parser = InstructionParser(ins_map, parts)
-parser.parse_instructions(instructions)
 

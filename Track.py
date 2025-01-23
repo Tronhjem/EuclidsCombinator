@@ -1,6 +1,5 @@
 from InstructionMap import InstructionMap
 
-
 class Track:
     def __init__(self, note, instructions: str, instruction_map: InstructionMap):
         self._counter = 0
@@ -12,3 +11,6 @@ class Track:
         evaluated_step = self._instruction_set.evaluate_step(self._counter)
         self._counter += 1
         return evaluated_step
+
+    def querry_step(self, step):
+        return self._instruction_set.evaluate_step(step)

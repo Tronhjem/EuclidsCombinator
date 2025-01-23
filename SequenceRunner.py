@@ -1,12 +1,13 @@
 from threading import Thread
 from time import time as timenow
+from time import sleep
 # import psutil
 
 from InstructionMap import InstructionMap
 from MidiOutHandler import MidiOutHandler
 
 class SequenceRunner(Thread):
-    def __init__(self, bpm, instruction_map: InstructionMap):
+    def __init__(self, bpm, instruction_map: InstructionMap, parts):
         super(SequenceRunner, self).__init__()
         # Set high priority for the process windows.
         # p = psutil.Process(os.getpid())
@@ -24,7 +25,7 @@ class SequenceRunner(Thread):
         self._midiHandler = MidiOutHandler()
 
         self._instruction_map = instruction_map
-        self._tracks = []
+        self._parts = parts
 
         self.start()
 
@@ -40,12 +41,13 @@ class SequenceRunner(Thread):
             nextStep = self._timeOfLastStep + self._interval
             if timenow() >= nextStep:
                 self._step += 1
-                for track in self._tracks:
+                for track in self._parts['tracks']:
                     if track.evaluate_next_step():
                         self._midiHandler.noteout(track._note, 100)
 
                 self._timeOfLastStep = timenow()
 
+        print('Shutting down seq')
         del self._midiHandler
 
     def shutdown(self):
