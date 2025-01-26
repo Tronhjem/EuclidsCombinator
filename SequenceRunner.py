@@ -4,10 +4,9 @@ from time import sleep
 # import psutil
 
 from InstructionMap import InstructionMap
-from MidiOutHandler import MidiOutHandler
 
 class SequenceRunner(Thread):
-    def __init__(self, bpm, instruction_map: InstructionMap, parts):
+    def __init__(self, bpm, instruction_map: InstructionMap, parts, midi_handler):
         super(SequenceRunner, self).__init__()
         # Set high priority for the process windows.
         # p = psutil.Process(os.getpid())
@@ -22,7 +21,7 @@ class SequenceRunner(Thread):
         self._timeOfLastStep = 0
         self._timeStart = 0
 
-        self._midiHandler = MidiOutHandler()
+        self._midiHandler = midi_handler
 
         self._instruction_map = instruction_map
         self._parts = parts

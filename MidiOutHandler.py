@@ -2,17 +2,19 @@ import rtmidi
 
 class MidiOutHandler:
     def __init__(self):
-        # pass
-        self.midiout = rtmidi.MidiOut()
-        self.available_ports = self.midiout.get_ports()
+        self._midiout = rtmidi.MidiOut()
+        self._available_ports = self._midiout.get_ports()
+    
+    def get_ports(self):
+        return self._available_ports
         
-        if self.available_ports:
-            self.midiout.open_port(1) #hardcoded for now to max input
+    def set_port(self, port):
+        if self._available_ports:
+            self._midiout.open_port(port) 
         else:
-            self.midiout.open_virtual_port("My virtual output")
+            self._midiout.open_virtual_port("My virtual output")
 
     def noteout(self, note, velocity):
-        pass
         note_on = [0x90, note, velocity] # channel 1, middle C, velocity 112
-        note_off = [0x80, 60, 0]
-        self.midiout.send_message(note_on)
+        # note_off = [0x80, 60, 0]
+        self._midiout.send_message(note_on)
