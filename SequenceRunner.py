@@ -48,9 +48,10 @@ class SequenceRunner(Thread):
             nextStep = self._timeOfLastStep + self._interval
             if timenow() >= nextStep:
                 self._step += 1
-                for track in self._parts['tracks']:
-                    if track.evaluate_next_step():
-                        self._midiHandler.noteout(track._note, 100)
+                if 'tracks' in self._parts:
+                    for track in self._parts['tracks']:
+                        if track.evaluate_next_step():
+                            self._midiHandler.noteout(track._note, 100)
 
                 self._timeOfLastStep = timenow()
 

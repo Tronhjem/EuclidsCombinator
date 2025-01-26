@@ -5,13 +5,16 @@ class InstructionMap:
         self._instruction_map = {}
         self._parts = parts
 
+    def clear(self):
+        self._instruction_map.clear()
+
     def get_instruction_set(self, instruction_set: str):
         instruction_set = instruction_set.replace(" ", "")
 
         if instruction_set in self._instruction_map:
             return self._instruction_map[instruction_set]
-        else:
 
+        else:
             self.build_instruction(instruction_set)
             if instruction_set in self._instruction_map:
                 return self._instruction_map[instruction_set]

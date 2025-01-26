@@ -9,7 +9,10 @@ class InstructionParser:
         self._parts = parts
         self._instructions = instructions
 
-    def update(self):
+    def update(self, instructions):
+        self._instructions = instructions
+        self._instruction_map.clear()
+        self._parts.clear()
         self._parts['tracks'] = []
         self.parse_instructions(self._instructions)
 
