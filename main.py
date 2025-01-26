@@ -36,8 +36,16 @@ if __name__ == '__main__':
         midi_handler.set_port(selected_ported)
     except:
         print("Could not set midi port, should be a integer")
-
-    seq = SequenceRunner(100, instructions_map, parts, midi_handler) # sequence starts thread.
+    
+    print('')
+    print('Set BPM: ')
+    bpm = 100
+    try:
+        bpm = int(input())
+    except:
+        print("Could not set bpm, should be a integer. Will default to 100")
+    
+    seq = SequenceRunner(bpm, instructions_map, parts, midi_handler) # sequence starts thread.
 
     #observer for updating sequences when text file is edited.
     observer = Observer()

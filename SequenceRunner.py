@@ -29,6 +29,10 @@ class SequenceRunner(Thread):
 
         self.start()
 
+    def set_bpm(self, bpm):
+        self._bpm = bpm
+        self._beatDivision = 4.
+        self._interval = 60. / (float(bpm) * self._beatDivision)
 
     def addTrack(self, part):
         self._tracks.append(part)

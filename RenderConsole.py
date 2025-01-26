@@ -13,9 +13,9 @@ def render(stdscr, data, text_file_handler):
 
     while True:
         stdscr.clear()
-        stdscr.addstr(0, 1, "Press 'q' to quit.")
-        stdscr.addstr(1, 1, "Press 'e' to edit sequences")
-        stdscr.addstr(2, 1, "Press 'ctl-g' to exit editing")
+        stdscr.addstr(0, 10, "Press 'q' to quit.")
+        stdscr.addstr(1, 10, "Press 'e' to edit sequences")
+        stdscr.addstr(2, 10, "Press 'ctl-g' to exit editing")
 
         win_height = 13
         win_width  = 45
@@ -32,7 +32,7 @@ def render(stdscr, data, text_file_handler):
         currentStep = data._step % 8
         cursor[currentStep] = '@'
 
-        stdscr.addstr(17, 1, f"Position: {cursor}")
+        stdscr.addstr(17, 1, f"     {cursor}")
         index = 18
         start = math.floor(data._step / 8) * 8
 
@@ -46,7 +46,7 @@ def render(stdscr, data, text_file_handler):
                     tempDisplay[temp_index] = sign
                     temp_index += 1
 
-                stdscr.addstr(index, 1, f"Track:    {tempDisplay}")
+                stdscr.addstr(index, 1, f"     {tempDisplay}")
                 index += 1
 
         stdscr.refresh()
