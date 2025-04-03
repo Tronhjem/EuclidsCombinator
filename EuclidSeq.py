@@ -21,24 +21,6 @@ class EuclidSeq(Part):
 
             count = count + self.hits
 
-    # def combineAnd(self, a, b):
-    #     return a & b
-
-    # def combineOr(self, a, b):
-    #     return a | b
-
-    # def comebineXor(self, a, b):
-    #     return a ^ b
-    
-    # def combineSequence(self, s1, s2, operation):
-    #     output = []
-    #     length = max(len(s1), len(s2))
-    #     for i in range(length):
-    #         result = operation(s1[i % len(s1)], s2[i % len(s2)])
-    #         output.append(result)
-        
-    #     return output
-
     # def __and__(self, other):
     #     return self.combineSequence(self.sequence, other._sequence, self.combineAnd)
 
